@@ -1,0 +1,71 @@
+// Créer une collection pour stocker les e-mails des administrateurs
+//ClearCollect(
+  //  admins_list;
+      //      {
+    //    Email: "dev01.ccomtl@ssss.gouv.qc.ca"
+    //};
+    //{
+      //  Email: "leandro.pimenta.ccomtl@ssss.gouv.qc.ca"
+        //   };
+    //{
+      //  Email: "Rafael.Alves.ccomtl@ssss.gouv.qc.ca"
+  
+    //};
+      // {
+       // Email: "Manel.Kihel.ccomtl@ssss.gouv.qc.ca"
+      
+    //}
+//);;
+
+// Créer une collection pour stocker les e-mails des utilisateurs standards
+
+//ClearCollect(
+  //  users_list;
+    //    {
+      //  Email: "llManel.Kihel.ccomtl@ssss.gouv.qc.ca"
+    //}
+//);;
+// Ajoutez ici les e-mails des utilisateurs
+// Vérifie si l'utilisateur actuel est un administrateur
+//If(
+    !IsBlank(
+        LookUp(
+            admins_list;
+            Email = User().Email
+        )
+    );
+    Set(
+        Is_role;
+        "Administrateur système"
+    ) && 
+    Set(
+        is_admin;
+        true
+    );
+    Set(
+        is_admin;
+        false
+    )
+);;
+// Ajoutez ici les e-mails des utilisateurs
+// Vérifie si l'utilisateur actuel est un administrateur
+If(
+    !IsBlank(
+        LookUp(
+            users_list;
+            Email = User().Email
+        )
+    );
+    Set(
+        Is_role;
+        "Administrateur Inventaire"
+    ) &&
+    Set(
+        is_user;
+        true
+    );
+    Set(
+        is_user;
+        false
+    )
+);;
